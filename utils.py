@@ -2,7 +2,7 @@ import pandas as pd# Your list of items
 
 """
 Input a list of Polygon Aggregates
-Outputs a DataFram with the json items parse into columns
+Outputs a DataFrame with the json items parse into columns
 """
 def polygon_to_df(items):
     data = []
@@ -19,3 +19,5 @@ def polygon_to_df(items):
             "otc": item.otc
         })# Creating a DataFrame
     df = pd.DataFrame(data)
+
+def 
