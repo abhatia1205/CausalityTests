@@ -10,7 +10,6 @@ import random
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint, solve_ivp
 import pandas as pd
-from GVAR.datasets.lotkaVolterra.multiple_lotka_volterra import MultiLotkaVolterra
 import math
 import sdeint
 
@@ -116,12 +115,12 @@ class DataGenerator():
         if seed is not None:
             np.random.seed(seed)
         
-        if(self.func.__name__ == "lotka_volterra"):
-            alpha, beta, delta, gamma = args
-            gen = MultiLotkaVolterra(p=p//2, d=2, alpha=alpha, beta=beta, delta=delta, gamma=gamma, sigma=self.sigma)
-            series, graph, _ = gen.simulate(int((T+burn_in)/delta_t), dt = delta_t)
-            X = series[0] 
-            return X[burn_in:], graph
+        # if(self.func.__name__ == "lotka_volterra"):
+        #     alpha, beta, delta, gamma = args
+        #     gen = MultiLotkaVolterra(p=p//2, d=2, alpha=alpha, beta=beta, delta=delta, gamma=gamma, sigma=self.sigma)
+        #     series, graph, _ = gen.simulate(int((T+burn_in)/delta_t), dt = delta_t)
+        #     X = series[0] 
+        #     return X[burn_in:], graph
         # Use scipy to solve ODE.
         x0 = np.random.uniform(low = -0.1, high = 0.1, size=p) + args[0]
         t = np.linspace(0, (T + burn_in) * delta_t, T + burn_in)
@@ -133,16 +132,16 @@ class DataGenerator():
         return X[burn_in:], ground_truth()
     
     def simulate(self, p, T, delta_t=0.01, sd=0.1, burn_in=1000,
-                       seed=0, args = ()):
+                       seed=0, args = (10)):
         if seed is not None:
             np.random.seed(seed)
         
-        if(self.func.__name__ == "lotka_volterra"):
-            alpha, beta, delta, gamma = args
-            gen = MultiLotkaVolterra(p=p//2, d=2, alpha=alpha, beta=beta, delta=delta, gamma=gamma, sigma=self.sigma)
-            series, graph, _ = gen.simulate(int((T+burn_in)/delta_t), dt = delta_t)
-            X = series[0] 
-            return X[burn_in:], graph
+        # if(self.func.__name__ == "lotka_volterra"):
+        #     alpha, beta, delta, gamma = args
+        #     gen = MultiLotkaVolterra(p=p//2, d=2, alpha=alpha, beta=beta, delta=delta, gamma=gamma, sigma=self.sigma)
+        #     series, graph, _ = gen.simulate(int((T+burn_in)/delta_t), dt = delta_t)
+        #     X = series[0] 
+        #     return X[burn_in:], graph
         # Use scipy to solve ODE.
         x0 = np.random.uniform(low = -0.1, high = 0.1, size=p) + args[0]
         t = np.linspace(0, (T + burn_in) * delta_t, T + burn_in)
