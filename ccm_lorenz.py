@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 def ccm_causality(tseries1, tseries2):
     #Prepare Data(Embedding)
-    lag = 24
+    lag = 18
     edim = 3
     e1 = skccm.Embed(tseries1)
     e2 = skccm.Embed(tseries2)
